@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Field from "./Field";
 
@@ -16,9 +16,25 @@ export default class UpdateProfile extends React.Component {
 
             curUsername:"Khaled",
             UsernameBox:"Khaled",
+            Id:'5b45fa295c5bc43e2f1e648f',
             HiddenStatusUsername:true
-
         }
+        this.load()
+    }
+    load(){
+      fetch('http://localhost:3001/users/'+this.state.Id).then(results=>{
+        return results.json();
+      }).then(data=>{
+        console.log(data);
+        // console.log(data.object);
+        // console.log(data.userName);
+        this.setState({curImg:data.urlPhoto});
+        this.setState({PictureBox:data.urlPhoto});
+        this.setState({curUsername:data.userName});
+        this.setState({UsernameBox:data.userName});
+      }).catch(err=>{
+        console.log(err);
+      })
     }
     changeProfilePicture=(e)=>{
         if(this.state.curImg!==this.state.PictureBox) {
@@ -59,7 +75,24 @@ export default class UpdateProfile extends React.Component {
         e.preventDefault();
     };
     sendRequest=(e)=>{
-        
+      // console.log("userName="+this.state.curUsername + "&urlPhoto="+this.state.curImg)
+      var jsonData = {};
+      jsonData["userName"]=this.state.curUsername;
+      jsonData["urlPhoto"]=this.state.curImg;
+      fetch('http://localhost:3001/users/update/'+this.state.Id,{
+        method:'PUT',
+        body : JSON.stringify(jsonData),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(results=>{
+        return results.json();
+      }).then(data=>{
+        console.log(data.msg);
+      }).catch(err=>{
+        console.log(err);
+      })
       e.preventDefault();
     };
     render(){
@@ -100,4 +133,3 @@ export default class UpdateProfile extends React.Component {
         );
     }
 }
-
