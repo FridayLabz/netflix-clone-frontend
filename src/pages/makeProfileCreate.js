@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './makeProfileCreate.css';
 import icon from './profilePicture.jpg';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class UserCreate extends Component{
     constructor(props){
