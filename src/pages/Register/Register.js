@@ -6,7 +6,11 @@ import './Register.css';
 export default class Register extends Component {
   constructor() {
     super();
-    this.state = { email: '', password: '' };
+    this.state = {
+      email: '',
+      password: '',
+      error: ''
+    };
   }
 
   onEmailUpdate = event => {
@@ -47,12 +51,12 @@ export default class Register extends Component {
     const { email, password } = this.state;
 
     if (!EmailValidator.validate(email)) {
-      alert('Invalid Email');
+      this.setState({ error: 'Invalid Email' });
       return;
     }
 
     if (!this.validPassword(password)) {
-      alert('Invalid Password');
+      this.setState({ error: 'Invalid Password' });
       return;
     }
 
@@ -68,10 +72,13 @@ export default class Register extends Component {
     });
 
     if (res.status !== 201) {
-      alert('Error creating account, Please try again.');
+      this.setState({
+        error: 'Error creating account, Please try again.'
+      });
       return;
     }
-    alert('Account created successfully.');
+
+    this.setState({ error: 'Account created successfully.' });
     const data = await res.json();
 
     // TODO: make use of the data
@@ -81,7 +88,7 @@ export default class Register extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, error } = this.state;
     return (
       <div className="container-fluid register-container px-4">
         <h1 className="display-4 font-weight-bold">Register</h1>
@@ -107,6 +114,7 @@ export default class Register extends Component {
           >
             Submit
           </button>
+          {error.length ? <p className="alert">{'*' + error}</p> : null}
         </div>
       </div>
     );

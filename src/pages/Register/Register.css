@@ -6,3 +6,10 @@
   height: 100vh;
   margin-top: -40pt;
 }
+
+.alert {
+  color: red;
+  font-weight: 100;
+  font-size: 12pt;
+  text-align: center;
+}
