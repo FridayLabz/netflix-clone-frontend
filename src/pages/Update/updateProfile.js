@@ -19,9 +19,8 @@ export default class UpdateProfile extends React.Component {
             Id:'5b45fa295c5bc43e2f1e648f',
             HiddenStatusUsername:true
         }
-        this.load()
     }
-    load(){
+    componentWillMount(){
       fetch('http://localhost:3001/users/'+this.state.Id).then(results=>{
         return results.json();
       }).then(data=>{
@@ -75,7 +74,7 @@ export default class UpdateProfile extends React.Component {
         e.preventDefault();
     };
     sendRequest=(e)=>{
-      // console.log("userName="+this.state.curUsername + "&urlPhoto="+this.state.curImg)
+      //console.log("userName="+this.state.curUsername + "&urlPhoto="+this.state.curImg)
       var jsonData = {};
       jsonData["userName"]=this.state.curUsername;
       jsonData["urlPhoto"]=this.state.curImg;
