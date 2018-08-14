@@ -1,0 +1,32 @@
+#title{
+    color:grey;
+
+}
+#main{
+    margin-left: 50px;
+
+    margin-top: 50px;
+    margin-right:50px;
+    position: center;
+
+}
+.left{
+
+    float:left;
+}
+.right{
+    float:right;
+}
+#logo{
+    height: 30%;
+    width: 30%;
+
+}
+
+.Data{
+    background-color: lightgrey;
+    width: 300px;
+    border: 4.5px solid mediumturquoise;
+    border-radius: 15px;
+    padding: 3px;
+}
