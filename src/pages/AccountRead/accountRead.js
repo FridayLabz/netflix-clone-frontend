@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-//import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {Button, Image, Grid, Row, Col} from 'react-bootstrap';
+
 import './accountRead.css';
 import icon from './NetflixLogo.jpg';
 
@@ -16,14 +17,21 @@ export default class UpdateAccount extends Component {
         }
     }
 
-    changeMailBox = () => {
+    changeMailBoxStatus = () => {
         this.setState({mailIsInput: true, passwordIsInput: false});
     };
 
-    changePassBox = () => {
+    changePassBoxStatus = () => {
         this.setState({mailIsInput: false, passwordIsInput: true});
     };
-
+    changeMailBox = (e) => {
+        this.setState({mail: e.target.value});
+        e.preventDefault();
+    };
+    changePasswordBox = (e) => {
+        this.setState({password: e.target.value});
+        e.preventDefault();
+    };
 
     componentWillMount() {
         fetch('http://localhost:3001/accounts/' + this.state.Id).then(results => {
@@ -45,28 +53,30 @@ export default class UpdateAccount extends Component {
                 <div className="container-fluid">
                     <div className="row">
 
-                        <img src={icon} id="logo" />
+                        <img src={icon} id="logo" alt="Netflix-Logo"/>
 
-                        <div className="col-md-5" >
+                        <div className="col-md-5">
                             <h4>
                                 E-mail:
-                                <label id="mail" onClick={this.changeMailBox}>
+                                <label id="mail" onClick={this.changeMailBoxStatus}>
                                     {this.state.mailIsInput === false ? this.state.mail :
-                                        <input className="form-control" type="text" value={this.state.mail}/>}
+                                        <input className="form-control" type="email" onChange={this.changeMailBox}
+                                               value={this.state.mail}/>}
                                 </label>
                             </h4>
                             <h4>
                                 Password:
-                                <label id="password" onClick={this.changePassBox}>
+                                <label id="password" onClick={this.changePassBoxStatus}>
                                     {this.state.passwordIsInput === false ? this.state.password :
-                                        <input className="form-control" type="text" value={this.state.password}/>}
+                                        <input className="form-control" type="text" onChange={this.changePasswordBox}
+                                               value={this.state.password}/>}
                                 </label>
                             </h4>
                         </div>
-                        <div className="col-md-3" >
+                        <div className="col-md-3">
                             <div className='change'>
                                 <h4>
-                                    <a href="#"     >Change E-mail</a>
+                                    <a href="#">Change E-mail</a>
                                 </h4>
                                 <h4>
                                     <a href="#">Change Password</a>
@@ -74,8 +84,12 @@ export default class UpdateAccount extends Component {
                             </div>
                         </div>
 
-                     </div>
-
+                    </div>
+                    <div>
+                        <Button id="Delete-btn"className="btn btn-outline-danger " >
+                            Delete
+                        </Button>
+                    </div>
                 </div>
             </div>
         );
