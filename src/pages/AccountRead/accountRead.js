@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
+//import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './accountRead.css';
-
+import icon from './NetflixLogo.jpg';
 
 export default class UpdateAccount extends Component {
 
     constructor() {
         super();
         this.state = {
-            mail: "",
-            password: "",
+            mail: "Data",
+            password: "Data",
             mailIsInput: false,
             passwordIsInput: false,
             Id: "5b6da7ef10ce015f1ec718d5"
@@ -39,33 +40,42 @@ export default class UpdateAccount extends Component {
 
     render() {
         return (
-
             <div id="main">
-                <h2 id="title">Account</h2>
-                <div className='Properties'>
-                    <h4>
-                        <label>E-mail:</label>
-                        <label id="mail" onClick={this.changeMailBox}>
-                            {this.state.mailIsInput === false ? <h4>{this.state.mail}</h4> :
-                                <input type="text" value={this.state.mail}/>}
-                        </label>
-                    </h4>
 
-                    <h4>
-                        <label>Password:</label>
-                        <label id="password" onClick={this.changePassBox}>
-                            {this.state.passwordIsInput === false ? <h4>{this.state.password}</h4> :
-                                <input type="text" value={this.state.password}/>}
-                        </label>
-                    </h4>
-                </div>
-                <div className='change'>
-                    <h4>
-                        <label>Change E-mail</label>
-                    </h4>
-                    <h4>
-                        <label>Change Password</label>
-                    </h4>
+                <div className="container-fluid">
+                    <div className="row">
+
+                        <img src={icon} id="logo" />
+
+                        <div className="col-md-5" >
+                            <h4>
+                                E-mail:
+                                <label id="mail" onClick={this.changeMailBox}>
+                                    {this.state.mailIsInput === false ? this.state.mail :
+                                        <input className="form-control" type="text" value={this.state.mail}/>}
+                                </label>
+                            </h4>
+                            <h4>
+                                Password:
+                                <label id="password" onClick={this.changePassBox}>
+                                    {this.state.passwordIsInput === false ? this.state.password :
+                                        <input className="form-control" type="text" value={this.state.password}/>}
+                                </label>
+                            </h4>
+                        </div>
+                        <div className="col-md-3" >
+                            <div className='change'>
+                                <h4>
+                                    <a href="#"     >Change E-mail</a>
+                                </h4>
+                                <h4>
+                                    <a href="#">Change Password</a>
+                                </h4>
+                            </div>
+                        </div>
+
+                     </div>
+
                 </div>
             </div>
         );
