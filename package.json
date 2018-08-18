@@ -5,11 +5,17 @@
   "dependencies": {
     "email-validator": "^2.0.4",
     "password-validator": "^4.1.1",
-    "react": "^16.4.1",
+    "react": "^16.4.2",
     "react-bootstrap": "^0.32.1",
+<<<<<<< HEAD
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
     "universal-cookie": "^3.0.0"
+=======
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^6.3.1"
+>>>>>>> ca4ba712d74d54731200a44fb539f682c158ec49
   },
   "scripts": {
     "start": "react-scripts start",
