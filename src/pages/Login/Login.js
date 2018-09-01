@@ -61,7 +61,7 @@ export default class Register extends Component {
       return;
     }
 
-    const res = await fetch('http://localhost:3001/accounts/login/', {
+    const res = await fetch('http://localhost:3001/accounts/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -83,8 +83,8 @@ export default class Register extends Component {
     this.setState({ error: 'Login successfully.' });
 
     const cookies = new Cookies();
-    cookies.set('Bearer Authorization', data.token, { path: '/' });
-
+    cookies.set('Authorization', 'Bearer ' + data.token, { path: '/' });
+    
     // TODO: make use of the data
     console.log(data);
     // TODO: redirect to Home Page
